@@ -1,0 +1,142 @@
+{% load staticfiles %}
+<!--DOCTYPE html -->
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet' href='{% static "css/styles.css" %}' />
+	
+	<title>{% block head_title %}HOTEL{% endblock head_title %}</title>
+	<style>
+		{% block style %}{% endblock style %}
+	</style>
+	{% block head_extra %} {% endblock head_extra %}
+</head>
+
+<body>
+
+	<header>
+		<h2>HOTEL ADILZHAN</h2>
+		<nav>
+			<li><a href="#">Главная</a></li>
+			<li><a href="#Products">Фотографии</a></li>
+			<li><a href="#">Текст</a></li>
+			<li><a href="#">Бронь</a></li>
+		</nav>
+	</header>
+
+
+	<section class="hero">
+		<div class="background-image" style="background-image: url({% static "img/hero.jpg" %});"></div>
+		<h1>Отель отель отель</h1>
+		<h3>Отель отель отель Отель	</h3>
+		<a href="http://tutorialzine.com/2016/06/freebie-landing-page-template-with-flexbox/" class="btn">Забронировать номер</a>
+	</section>
+
+
+	<section id="Products" class="our-work">
+		<h3 class="title">Some of our work</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+		<hr>
+
+		<ul class="grid">
+			<li class="small" style="background-image: url({% static "img/coast.jpg" %});"></li>
+			<li class="large" style="background-image: url({% static "img/island.jpg" %});"></li>
+			<li class="large" style="background-image: url({% static "img/balloon.jpg" %});"></li>
+			<li class="small" style="background-image: url({% static "img/mountain.jpg" %});"></li>
+		</ul>
+	</section>
+	
+
+	<section class="features">
+		<h3 class="title">Features and services</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+		<hr>
+
+		<ul class="grid">
+			<li>
+				<i class="fa fa-camera-retro"></i>
+				<h4>Photography</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
+			</li>
+			<li>
+				<i class="fa fa-cubes"></i>
+				<h4>Web Development</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
+			</li>
+			<li>
+				<i class="fa fa-newspaper-o"></i>
+				<h4>Content Editing</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
+			</li>
+		</ul>
+	</section>
+
+
+	<section class="reviews">
+		<h3 class="title">What others say:</h3>
+		<p class="quote">Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.</p>
+		
+		
+	</section>
+
+<div class="row">
+	<section class="col-md-12">
+		<h3 class="title">Join our newsletter</h3>	
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+		
+
+		{% for room in rooms %}
+					{% if room.booked|divisibleby:2 %}
+						{% if staff == "yes" %}
+								<img class="smallimg" src='{% static "img/21.jpg" %}'></a>
+								<form method="POST" action='' class="button" enctype='multipart/form-data'> {% csrf_token %}
+					                {{ form }}
+					                <br>
+					                <input type='hidden' name='room_id' value='{{ room.id }}'>
+					                <input type='submit' class='btn btn-info' value='Изменить статус'>
+					            </form>
+						{% endif %}
+						{% if staff == "no" %}
+							<img class="smallimg " src='{% static "img/21.jpg" %}'>
+						{% endif %}	
+					{% else %}
+						{% if staff == "yes" %}
+								<img class="smallimg" src='{% static "img/hero.jpg" %}'></a>
+								<form method="POST" class='button' action='' enctype='multipart/form-data'> {% csrf_token %}
+					                {{ form }}
+					                <br>
+					                <input type='hidden' name='room_id' value='{{ room.id }}'>
+					                <input type='submit' class='btn btn-info' value='Изменить статус'>
+					            </form>
+						{% endif %}
+						{% if staff == "no" %}
+							<img class="smallimg " src='{% static "img/hero.jpg" %}'>
+						{% endif %}	
+					{% endif %}
+		{% endfor %}
+			
+		
+	</section>
+</div>
+	<footer>
+		<ul>
+			<li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+			<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+			<li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
+			<li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
+			<li><a href="#"><i class="fa fa-github-square""></i></a></li>
+		</ul>
+		<p>Made by <a href="http://tutorialzine.com/" target="_blank">tutorialzine</a>. images courtesy to <a href="http://unsplash.com/" target="_blank">unsplash</a>.</p>
+		<p>No attribution required. you can remove this footer.</p>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
