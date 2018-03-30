@@ -20,9 +20,15 @@ def main_view(request):
             if room_qs.exists() and room_qs.count() == 1:
                 room_obj = room_qs.first()
         if room_obj:
+            if room_obj.booked == 100:
+                room_obj.booked = 0
+                room_obj.user = ''
+                room_obj.change_date = ''        
             room_obj.booked += 1
-            room_obj.user.append(request.user.id)
-            room_obj.change_date.append(timezone.now())
+            room_obj.user += str(request.user.id)
+            room_obj.user += ','
+            room_obj.change_date += str(timezone.now())
+            room_obj.change_date += ','
             room_obj.end_date = form.cleaned_data.get("end_date")
             room_obj.save()
             print(room_obj.booked)

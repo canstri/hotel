@@ -74,15 +74,24 @@ WSGI_APPLICATION = 'hotel.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hotel',
+        'USER': 'kuanysh',
+        'PASSWORD': '031196Kk',
+        'HOST': 'kuanysh.pythonanywhere.com',
+        'PORT': '',
+    }
+}
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 

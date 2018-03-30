@@ -6,10 +6,11 @@ from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 
 class Room(models.Model):
-    user = ArrayField(models.IntegerField(default=0))
+    user = models.TextField(default='0,')
+    change_date = models.TextField(default='2018-03-30,')
+
     booked = models.IntegerField(default=0) 
-    timestamp = models.DateTimeField(auto_now=False, auto_now_add=False)
-    change_date = ArrayField(models.TextField(null = True))
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=False, null = True)
     end_date = models.DateField(blank=True, null = True)
 
     class Meta:
