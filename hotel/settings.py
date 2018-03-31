@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 's$w+=xd_24wo*3gs#q3zv0uc@gs0!y
 #DEBUG = False
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['limonad1.pythonanywhere.com']
 
 
 # Application definition
