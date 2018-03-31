@@ -1,142 +1,190 @@
 {% load staticfiles %}
-<!--DOCTYPE html -->
-<html>
+{% load crispy_forms_tags %}
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
-	<meta charset="utf-8">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel='stylesheet' href='{% static "css/styles.css" %}' />
-	
-	<title>{% block head_title %}HOTEL{% endblock head_title %}</title>
-	<style>
-		{% block style %}{% endblock style %}
-	</style>
-	{% block head_extra %} {% endblock head_extra %}
+<meta charset="UTF-8">
+<title>{% block head_title %}Hotel{% endblock head_title %}</title>
+<link rel='stylesheet' href='{% static "img/favicon.png" %}' />
+
+<link rel='stylesheet' href='{% static "css/style.css" %}' />
+<link rel='stylesheet' href='{% static "css/prettyPhoto.css" %}' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src='{% static "js/jquery-1.6.2.min.js" %}' type="text/javascript"></script>
+<script src='{% static "js/ddsmoothmenu.js" %}' type="text/javascript"></script>
+<script src='{% static "js/transify.js" %}' type="text/javascript"></script>
+<script src='{% static "js/jquery.aw-showcase.js" %}' type="text/javascript"></script>
+<script src='{% static "js/jquery.jcarousel.js" %}' type="text/javascript"></script>
+<script src='{% static "js/carousel.js" %}' type="text/javascript"></script>
+<script src='{% static "js/jquery.prettyPhoto.js" %}' type="text/javascript"></script>
+<script src='{% static "js/jquery.superbgimage.min.js" %}' type="text/javascript"></script>
+<script src='{% static "js/jquery.slickforms.js" %}' type="text/javascript"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	$('.forms').dcSlickForms();
+});
+</script>
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+	$("#showcase").awShowcase(
+	{
+		content_width:			900,
+		content_height:			400,
+		auto:					true,
+		interval:				3000,
+		continuous:				false,
+		arrows:					true,
+		buttons:				true,
+		btn_numbers:			true,
+		keybord_keys:			true,
+		mousetrace:				false, /* Trace x and y coordinates for the mouse */
+		pauseonover:			true,
+		stoponclick:			false,
+		transition:				'fade', /* hslide/vslide/fade */
+		transition_delay:		0,
+		transition_speed:		500,
+		show_caption:			'onload' /* onload/onhover/show */
+	});
+});
+
+</script>
+
 </head>
-
 <body>
-
-	<header>
-		<h2>HOTEL ADILZHAN</h2>
-		<nav>
-			<li><a href="#">Главная</a></li>
-			<li><a href="#Products">Фотографии</a></li>
-			<li><a href="#">Текст</a></li>
-			<li><a href="#">Бронь</a></li>
-		</nav>
-	</header>
-
-
-	<section class="hero">
-		<div class="background-image" style="background-image: url({% static "img/hero.jpg" %});"></div>
-		<h1>Отель отель отель</h1>
-		<h3>Отель отель отель Отель	</h3>
-		<a href="http://tutorialzine.com/2016/06/freebie-landing-page-template-with-flexbox/" class="btn">Забронировать номер</a>
-	</section>
-
-
-	<section id="Products" class="our-work">
-		<h3 class="title">Some of our work</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
-		<hr>
-
-		<ul class="grid">
-			<li class="small" style="background-image: url({% static "img/coast.jpg" %});"></li>
-			<li class="large" style="background-image: url({% static "img/island.jpg" %});"></li>
-			<li class="large" style="background-image: url({% static "img/balloon.jpg" %});"></li>
-			<li class="small" style="background-image: url({% static "img/mountain.jpg" %});"></li>
-		</ul>
-	</section>
-	
-
-	<section class="features">
-		<h3 class="title">Features and services</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
-		<hr>
-
-		<ul class="grid">
-			<li>
-				<i class="fa fa-camera-retro"></i>
-				<h4>Photography</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
-			</li>
-			<li>
-				<i class="fa fa-cubes"></i>
-				<h4>Web Development</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
-			</li>
-			<li>
-				<i class="fa fa-newspaper-o"></i>
-				<h4>Content Editing</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
-			</li>
-		</ul>
-	</section>
-
-
-	<section class="reviews">
-		<h3 class="title">What others say:</h3>
-		<p class="quote">Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.</p>
+<!-- Fullscreen backgrounds -->
+<div id="superbgimage">
+	<div class="scanlines"></div>
+</div>
+<!-- End Fullscreen backgrounds -->
+<!-- Begin Wrapper -->
+<div id="wrapper">
+  <div id="header">
+    <div class="logo opacity"><a href='{% url "main" %}'><img style="height: 130px;" src='{% static "img/logo.png" %}' alt="" /></a></div>
+    <div class="social">
+      <ul>
+      	{% if staff == 'yes' %}
+      		<a class="target spacex2" href='{% url "table" %}'>Журнал</a>
+      	{% endif %}	
 		
-		
-	</section>
+      	{% if request.user.is_authenticated %}	
+			<a class="target spacex2" href='{% url "logout" %}'>Logout</a>
+		{% else %}
+			<a class="target spacex2" href='{% url "login" %}'>Login</a>
+		{% endif %}
+      </ul>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!-- Begin Menu -->
+  <!-- End Menu --> 
+  
+  <!-- Begin Container -->
+  <div id="container" class="opacity"> 
+    
+    <!-- Begin Showcase -->
+    <div id="showcase" class="showcase"> 
+      <!-- Each child div in #showcase represents a slide -->
+      <div class="showcase-slide"> 
+        <!-- Put the slide content in a div with the class .showcase-content. -->
+        <div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s1.jpg" %}' alt="1" /> </div>
+      </div>
+      
+      <!-- Each child div in #showcase represents a slide -->
+      <div class="showcase-slide"> 
+        <!-- Put the slide content in a div with the class .showcase-content. -->
+        <div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s2.jpg" %}' alt="2" /> </div>
+        </div>      
+      <!-- Each child div in #showcase represents a slide -->
+      <div class="showcase-slide"> 
+        <!-- Put the slide content in a div with the class .showcase-content. -->
+        <div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s3.jpg" %}' alt="3" /> </div>
+      </div>
+      <!-- Each child div in #showcase represents a slide -->
+      	<div class="showcase-slide"> 
+        	<div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s4.jpg" %}' alt="4" /> </div>
+        </div>
+        <div class="showcase-slide"> 
+        	<div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s5.jpg" %}' alt="5" /> </div>
+        </div>
+        <div class="showcase-slide"> 
+        	<div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s6.jpg" %}' alt="6" /> </div>
+        </div>
+        <div class="showcase-slide"> 
+        	<div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s7.jpg" %}' alt="7" /> </div>
+        </div>
+        <div class="showcase-slide"> 
+        	<div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s8.jpg" %}' alt="7" /> </div>
+        </div>
+        <div class="showcase-slide"> 
+        	<div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s9.jpg" %}' alt="7" /> </div>
+        </div>
+                <div class="showcase-slide"> 
+        	<div class="showcase-content"> <img style="height: 500px;" src='{% static "img/s10.jpg" %}' alt="7" /> </div>
+        </div>
 
-<div class="row">
-	<section class="col-md-12">
-		<h3 class="title">Join our newsletter</h3>	
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
-		
-
+    </div>
+    <!-- End Showcase -->
+    
+    <div class="intro">Aenean fringilla aliquam est, a porttitor arcu euismod et. Maecenas rutrum erat at arcu porta interdum. Cras convallis ligula ac risus imperdiet placerat.</div>
+    <div class="hr2"></div>
+    <!-- Divider --> 
+    
+    <!-- Begin Latest Works -->
+    <h2>Latest Works</h2>
+    <div style="display: block;">
 		{% for room in rooms %}
+			<div style="display: inline-block;">
 					{% if room.booked|divisibleby:2 %}
 						{% if staff == "yes" %}
-								<img class="smallimg" src='{% static "img/21.jpg" %}'></a>
-								<form method="POST" action='' class="button" enctype='multipart/form-data'> {% csrf_token %}
-					                {{ form }}
-					                <br>
-					                <input type='hidden' name='room_id' value='{{ room.id }}'>
-					                <input type='submit' class='btn btn-info' value='Изменить статус'>
+		    				<img src='{% static "img/close.png" %}' alt="" class="openimg" />
+		    					<form method="POST" action=''  enctype='multipart/form-data'> {% csrf_token %}
+		    						<div class="form-group">
+						                {{ form|crispy }}
+						                <br>
+						                <input type='hidden' name='room_id' value='{{ room.id }}'>
+						                <input type='submit' class="btn btn-info" value='Поменять'>
+					                </div>
 					            </form>
+					        	<br><br><br><br>
 						{% endif %}
 						{% if staff == "no" %}
-							<img class="smallimg " src='{% static "img/21.jpg" %}'>
+		    				<img src='{% static "img/close.png" %}' alt="" class="openimg" />
 						{% endif %}	
 					{% else %}
 						{% if staff == "yes" %}
-								<img class="smallimg" src='{% static "img/hero.jpg" %}'></a>
-								<form method="POST" class='button' action='' enctype='multipart/form-data'> {% csrf_token %}
-					                {{ form }}
-					                <br>
-					                <input type='hidden' name='room_id' value='{{ room.id }}'>
-					                <input type='submit' class='btn btn-info' value='Изменить статус'>
+		    				<img src='{% static "img/open.png" %}' alt="" class="openimg" />
+        						<form method="POST"  action='' enctype='multipart/form-data'> {% csrf_token %}
+					                <div class="form-group">
+						                {{ form|crispy }}
+						                <br>
+						                <input type='hidden' name='room_id' value='{{ room.id }}'>
+						                <input type='submit' class="btn btn-info" value='Поменять'>
+					            	</div>
 					            </form>
+					            <br><br><br><br>
 						{% endif %}
 						{% if staff == "no" %}
-							<img class="smallimg " src='{% static "img/hero.jpg" %}'>
-						{% endif %}	
+		    				<img src='{% static "img/open.png" %}' alt="" class="openimg" />
+        				{% endif %}	
 					{% endif %}
+					</div>
 		{% endfor %}
-			
-		
-	</section>
-</div>
-	<footer>
-		<ul>
-			<li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-			<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-			<li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
-			<li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
-			<li><a href="#"><i class="fa fa-github-square""></i></a></li>
-		</ul>
-		<p>Made by <a href="http://tutorialzine.com/" target="_blank">tutorialzine</a>. images courtesy to <a href="http://unsplash.com/" target="_blank">unsplash</a>.</p>
-		<p>No attribution required. you can remove this footer.</p>
-	</footer>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		</div>
 
+</div>
+<!-- End Wrapper --> 
+
+<script src='{% static "js/scripts.js" %}' type="text/javascript"></script>
 
 </body>
 </html>
+
+
+		

@@ -17,10 +17,15 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
-from main.views import(main_view)
+from accounts.views import (login_view, register_view, logout_view)
+from main.views import(main_view, table)
 
 urlpatterns = [
     url('admin/', admin.site.urls),
+    url(r'^register/', register_view, name='register'),
+    url(r'^login/', login_view, name='login'),
+    url(r'^logout/', logout_view, name='logout'),
+    url(r'^notebook', table, name = 'table'),
     url(r'^', main_view, name = 'main'),
 
 ]

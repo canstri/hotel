@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="container" class="opacity"> 
+
+			<h1>{{ title }}</h1>
+			<form method='POST' action='' class="" enctype='multipart/form-data'>{% csrf_token %}
+				{{ form|crispy }}
+				<input type='submit' class='btn btn-info' style="margin-top:20px" value="Войти" />
+			</form>
+</div>
+{% endblock content %}

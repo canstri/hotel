@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="container" class="opacity"> 
+	<h3>Журнал:</h3>
+  	{% for note in notes %}
+		<p>
+		<strong>Комната {{ note.room }}: </strong>
+		{% if note.booked == False %}
+			Занято
+		{% else %}
+			Свободно
+		{% endif %}
+		{{ note.user }}
+		{{ note.timestamp }}
+		<br>
+		</p>
+	{% endfor %}
+</div>
+{% endblock content %}
