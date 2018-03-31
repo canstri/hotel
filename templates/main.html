@@ -5,17 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>{% block head_title %}Hotel{% endblock head_title %}</title>
-<link rel='stylesheet' href='{% static "img/favicon.png" %}' />
 
 <link rel='stylesheet' href='{% static "css/style.css" %}' />
-<link rel='stylesheet' href='{% static "css/prettyPhoto.css" %}' />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src='{% static "js/jquery-1.6.2.min.js" %}' type="text/javascript"></script>
-<script src='{% static "js/ddsmoothmenu.js" %}' type="text/javascript"></script>
 <script src='{% static "js/transify.js" %}' type="text/javascript"></script>
 <script src='{% static "js/jquery.aw-showcase.js" %}' type="text/javascript"></script>
 <script src='{% static "js/jquery.jcarousel.js" %}' type="text/javascript"></script>
@@ -23,6 +20,7 @@
 <script src='{% static "js/jquery.prettyPhoto.js" %}' type="text/javascript"></script>
 <script src='{% static "js/jquery.superbgimage.min.js" %}' type="text/javascript"></script>
 <script src='{% static "js/jquery.slickforms.js" %}' type="text/javascript"></script>
+
 
 <script type="text/javascript">
 jQuery(document).ready(function($){
@@ -40,7 +38,6 @@ $(document).ready(function()
 		auto:					true,
 		interval:				3000,
 		continuous:				false,
-		arrows:					true,
 		buttons:				true,
 		btn_numbers:			true,
 		keybord_keys:			true,
@@ -66,7 +63,7 @@ $(document).ready(function()
 <!-- Begin Wrapper -->
 <div id="wrapper">
   <div id="header">
-    <div class="logo opacity"><a href='{% url "main" %}'><img style="height: 130px;" src='{% static "img/logo.png" %}' alt="" /></a></div>
+    <a href='{% url "main" %}' class="logo">Гостиница "Hostel JD"</a>
     <div class="social">
       <ul>
       	{% if staff == 'yes' %}
@@ -132,18 +129,36 @@ $(document).ready(function()
     </div>
     <!-- End Showcase -->
     
-    <div class="intro">Aenean fringilla aliquam est, a porttitor arcu euismod et. Maecenas rutrum erat at arcu porta interdum. Cras convallis ligula ac risus imperdiet placerat.</div>
+    <div class="intro">
+      Гостиница “HOSTEL JD” приглашает жителей и гостей южной столицы в свои уютные и комфортабельные номера. 
+      <br><br>
+      К услугам гостей <br>
+      6 двухместных номеров по 6000 тг.<br>
+      2 одноместных номера с диваном по 5000 тг. <br>
+      2 кровати в общей комнате по 2500 тг. 
+      <br><br>
+      Стойка регистрации работает круглосуточно. 
+      <br><br>
+      Ждем Вас по адресу <br>
+      Желтоксан 1Б (возле вокзала Алматы-2)
+    </div>
     <div class="hr2"></div>
     <!-- Divider --> 
     
     <!-- Begin Latest Works -->
-    <h2>Latest Works</h2>
+    <h2>Комнаты:</h2>
+    <p>Зеленые - свободны, красные - заняты.</p>
     <div style="display: block;">
 		{% for room in rooms %}
 			<div style="display: inline-block;">
+      {% if room.id == 10 %}
+        <p style="font-weight: 600; margin-top: 20px;">Комната 9, кровать 2</p>
+      {% else %}
+        <p style="font-size: 15px; font-weight: 600">Комната {{ room.id }}</p>
+      {% endif %}
 					{% if room.booked|divisibleby:2 %}
 						{% if staff == "yes" %}
-		    				<img src='{% static "img/close.png" %}' alt="" class="openimg" />
+		    				<img src='{% static "img/open.png" %}' alt="" class="openimg" />
 		    					<form method="POST" action=''  enctype='multipart/form-data'> {% csrf_token %}
 		    						<div class="form-group">
 						                {{ form|crispy }}
@@ -155,11 +170,11 @@ $(document).ready(function()
 					        	<br><br><br><br>
 						{% endif %}
 						{% if staff == "no" %}
-		    				<img src='{% static "img/close.png" %}' alt="" class="openimg" />
+		    				<img src='{% static "img/open.png" %}' alt="" class="openimg" />
 						{% endif %}	
 					{% else %}
 						{% if staff == "yes" %}
-		    				<img src='{% static "img/open.png" %}' alt="" class="openimg" />
+		    				<img src='{% static "img/close.png" %}' alt="" class="openimg" />
         						<form method="POST"  action='' enctype='multipart/form-data'> {% csrf_token %}
 					                <div class="form-group">
 						                {{ form|crispy }}
@@ -171,7 +186,7 @@ $(document).ready(function()
 					            <br><br><br><br>
 						{% endif %}
 						{% if staff == "no" %}
-		    				<img src='{% static "img/open.png" %}' alt="" class="openimg" />
+		    				<img src='{% static "img/close.png" %}' alt="" class="openimg" />
         				{% endif %}	
 					{% endif %}
 					</div>

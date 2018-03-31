@@ -18,6 +18,6 @@ class Note(models.Model):
     booked = models.BooleanField(default = False)
     room = models.IntegerField(default = 0)
     class Meta:
-        ordering = ['timestamp']
+        ordering = ['-timestamp']
 
             
